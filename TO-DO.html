@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TO-DO App</title>
+	<style>
+		body {
+			background-color: #F0EDE5;
+			font-family: Arial, Helvetica, sans-serif;
+			color: #4A4E4D;
+		}
+
+		h1 {
+			font-size: 50px;
+			margin-top: 0;
+			margin-bottom: 30px;
+			color: #FF6347;
+		}
+
+		form input[type="text"] {
+			width: 60%;
+			padding: 10px;
+			font-size: 20px;
+			margin-right: 10px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+			background-color: #F5F5F5;
+			color: #4A4E4D;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		form button {
+			padding: 10px;
+			font-size: 20px;
+			border: none;
+			border-radius: 5px;
+			background-color: #FF6347;
+			color: white;
+			cursor: pointer;
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		ul {
+			list-style-type: none;
+			padding: 0;
+		}
+
+		li {
+			padding: 10px;
+			font-size: 20px;
+			margin-bottom: 10px;
+			background-color: #F5F5F5;
+			border-radius: 5px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		.checked {
+			text-decoration: line-through;
+			color: grey;
+		}
+
+		.delete-button {
+			background-color: #FF6347;
+			color: white;
+			padding: 5px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		.delete-button img {
+			height: 20px;
+			width: 20px;
+			margin-right: 5px;
+		}
+
+		.add-task {
+			background-color: #F5F5F5;
+			padding: 10px;
+			border-radius: 5px;
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+			display: flex;
+			align-items: center;
+			margin-bottom: 20px;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		.add-task img {
+			height: 40px;
+			width: 40px;
+			margin-right: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>TO-DO App</h1>
+		<form class="add-task">
+			<img src="C:\Users\Mahesh\Desktop\800px_COLOURBOX1995344.jpg" alt="task icon">
+            <input type="text" placeholder="Add a task" id="task-input">
+            <button type="button" onclick="addTask()">Add</button>
+        </form>
+        <ul id="task-list"></ul>
+    </div>
+    
+    <script>
+        const taskList = document.getElementById("task-list");
+        const input = document.getElementById("task-input");
+    
+        function addTask() {
+            const taskText = input.value;
+            if (taskText) {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <span onclick="markComplete(event)">${taskText}</span>
+                    <button class="delete-button" onclick="deleteTask(event)">
+                        <img src="C:\\Users\\Mahesh\\Desktop\\Delete.jpg" alt="delete icon">
+                        Delete
+                    </button>
+                `;
+                taskList.appendChild(li);
+                input.value = "";
+            }
+        }
+    
+        function markComplete(event) {
+            const task = event.target.nextElementSibling;
+            task.classList.toggle("checked");
+        }
+    
+        function deleteTask(event) {
+            const li = event.target.parentElement;
+            taskList.removeChild(li);
+        }
+    </script>
+ </body>
+</html>    
